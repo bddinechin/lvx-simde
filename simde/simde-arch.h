@@ -699,4 +699,10 @@
 #  define SIMDE_ARCH_LOONGARCH_LASX 2
 #endif
 
+/* LVX
+   <https://github.com/bddinechin/lvx-csw> */
+#if defined(__lvx__)
+#  define SIMDE_ARCH_LVX 1
+#endif
+
 #endif /* !defined(SIMDE_ARCH_H) */

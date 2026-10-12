@@ -788,6 +788,20 @@
 #if defined(SIMDE_LOONGARCH_LASX_NATIVE)
   #include <lasxintrin.h>
 #endif
+
+/* LVX.  Gated on lvx-2, where the lane-wise SIMD is: lvx-1 carries the 128-bit
+   loads, splats and quadword shifts but no packed arithmetic, so a native
+   branch there would not compile.  __lvxarch_lvx_2 is lvx-gcc's predefine for
+   the variant.  Honours SIMDE_LVX_NO_NATIVE and SIMDE_NO_NATIVE, which is how
+   validation/run-simde.sh exercises the portable path on the same target. */
+#if !defined(SIMDE_LVX_NATIVE) && !defined(SIMDE_LVX_NO_NATIVE) && !defined(SIMDE_NO_NATIVE)
+  #if defined(SIMDE_ARCH_LVX) && defined(__lvxarch_lvx_2)
+    #define SIMDE_LVX_NATIVE
+  #endif
+#endif
+#if defined(SIMDE_LVX_NATIVE)
+  #include <lvx/compute.h>
+#endif
 #if defined(SIMDE_LOONGARCH_LSX_NATIVE)
   #include <lsxintrin.h>
 #endif
