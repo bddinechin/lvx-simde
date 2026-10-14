@@ -11,5 +11,6 @@
 #include "compute/add.h"
 #include "compute/sbf.h"
 #include "compute/minmax.h"
+#include "compute/compare.h"
 
 #endif /* LVX_COMPUTE_H */

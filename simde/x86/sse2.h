@@ -4580,6 +4580,8 @@ simde_mm_movemask_epi8 (simde__m128i a) {
       r = HEDLEY_STATIC_CAST(int32_t, wasm_i8x16_bitmask(a_.wasm_v128));
     #elif defined(SIMDE_LOONGARCH_LSX_NATIVE)
       r = __lsx_vpickve2gr_w(__lsx_vmskltz_b(a_.lsx_i64), 0);
+    #elif defined(SIMDE_LVX_NATIVE)
+      r = HEDLEY_STATIC_CAST(int32_t, lvx_msbmaskbx(a_.lvx_i8));
     #else
       SIMDE_VECTORIZE_REDUCTION(|:r)
       for (size_t i = 0 ; i < (sizeof(a_.u8) / sizeof(a_.u8[0])) ; i++) {
