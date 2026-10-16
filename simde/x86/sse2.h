@@ -1041,6 +1041,8 @@ simde_mm_adds_epi8 (simde__m128i a, simde__m128i b) {
       r_.altivec_i8 = vec_adds(a_.altivec_i8, b_.altivec_i8);
     #elif defined(SIMDE_LOONGARCH_LSX_NATIVE)
       r_.lsx_i64 = __lsx_vsadd_b(a_.lsx_i64, b_.lsx_i64);
+    #elif defined(SIMDE_LVX_NATIVE)
+      r_.lvx_i8 = lvx_addsbx (a_.lvx_i8,  b_.lvx_i8);
     #else
       SIMDE_VECTORIZE
       for (size_t i = 0 ; i < (sizeof(r_.i8) / sizeof(r_.i8[0])) ; i++) {
@@ -1144,6 +1146,8 @@ simde_mm_adds_epu16 (simde__m128i a, simde__m128i b) {
       r_.altivec_u16 = vec_adds(a_.altivec_u16, b_.altivec_u16);
     #elif defined(SIMDE_LOONGARCH_LSX_NATIVE)
       r_.lsx_i64 = __lsx_vsadd_hu(a_.lsx_i64, b_.lsx_i64);
+    #elif defined(SIMDE_LVX_NATIVE)
+      r_.lvx_i16 = lvx_addusho (a_.lvx_i16, b_.lvx_i16);
     #else
       SIMDE_VECTORIZE
       for (size_t i = 0 ; i < (sizeof(r_.u16) / sizeof(r_.u16[0])) ; i++) {
@@ -7912,6 +7916,8 @@ simde_mm_subs_epi8 (simde__m128i a, simde__m128i b) {
       r_.wasm_v128 = wasm_i8x16_sub_sat(a_.wasm_v128, b_.wasm_v128);
     #elif defined(SIMDE_LOONGARCH_LSX_NATIVE)
       r_.lsx_i64 = __lsx_vssub_b(a_.lsx_i64, b_.lsx_i64);
+    #elif defined(SIMDE_LVX_NATIVE)
+      r_.lvx_i8 = lvx_subsbx (a_.lvx_i8,  b_.lvx_i8);
     #else
       SIMDE_VECTORIZE
       for (size_t i = 0 ; i < (sizeof(r_) / sizeof(r_.i8[0])) ; i++) {
@@ -7943,6 +7949,8 @@ simde_mm_subs_epi16 (simde__m128i a, simde__m128i b) {
       r_.wasm_v128 = wasm_i16x8_sub_sat(a_.wasm_v128, b_.wasm_v128);
     #elif defined(SIMDE_LOONGARCH_LSX_NATIVE)
       r_.lsx_i64 = __lsx_vssub_h(a_.lsx_i64, b_.lsx_i64);
+    #elif defined(SIMDE_LVX_NATIVE)
+      r_.lvx_i16 = lvx_subsho (a_.lvx_i16, b_.lvx_i16);
     #else
       SIMDE_VECTORIZE
       for (size_t i = 0 ; i < (sizeof(r_) / sizeof(r_.i16[0])) ; i++) {
