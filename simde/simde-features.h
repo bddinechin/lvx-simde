@@ -791,11 +791,11 @@
 
 /* LVX.  Gated on lvx-2, where the lane-wise SIMD is: lvx-1 carries the 128-bit
    loads, splats and quadword shifts but no packed arithmetic, so a native
-   branch there would not compile.  __lvxarch_lvx_2 is lvx-gcc's predefine for
+   branch there would not compile.  __lvx_2__ is lvx-gcc's predefine for
    the variant.  Honours SIMDE_LVX_NO_NATIVE and SIMDE_NO_NATIVE, which is how
    validation/run-simde.sh exercises the portable path on the same target. */
 #if !defined(SIMDE_LVX_NATIVE) && !defined(SIMDE_LVX_NO_NATIVE) && !defined(SIMDE_NO_NATIVE)
-  #if defined(SIMDE_ARCH_LVX) && defined(__lvxarch_lvx_2)
+  #if defined(SIMDE_ARCH_LVX) && defined(__lvx_2__)
     #define SIMDE_LVX_NATIVE
   #endif
 #endif
